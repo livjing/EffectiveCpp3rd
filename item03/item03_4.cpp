@@ -18,9 +18,15 @@ public:
         return text[pos];
     }
 
+    void print(const TextBlock& ctb){
+        cout << ctb[0] << endl;  // call const TextBlock::operator[]
+        // ...
+    }
 private:
     string text;
 };
+
+
 
 int main(int argc, char const *argv[])
 {
@@ -29,9 +35,12 @@ int main(int argc, char const *argv[])
     // 一个类的两个成员函数如果只是常量性不同, 也是可以被重载的
     TextBlock tb("Hello");
     cout << tb[0] << endl;
+    tb[0] = 'x'; // 注意: non-const operator[] 能修改成功的原因是返回的 char&
+    cout << tb[0] << endl;
 
     const TextBlock ctb("World");
     cout << ctb[0] << endl;
+    // ctb[0] = 'x'; // error, 无法修改一个 const object
 
 
     return 0;
