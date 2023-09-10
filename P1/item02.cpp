@@ -54,10 +54,26 @@ int f(int num){
 // 使用较大参数,调用函数f
 #define CALL_WITH_MAX(a, b) f((a) > (b) ? (a) : (b))
 
-
+template<typename T>
+inline void callWithMax(const T& a, const T& b){
+    f(a > b ? a : b);
+}
 
 int main(int argc, char const *argv[])
 {
     cout << "条款02: 尽量以const, enum, inline 替换 #define" << endl;
+
+    int a = 5, b = 0;
+    CALL_WITH_MAX(++a, b); // a = 7, b = 0, 变量a 被加了2次
+    cout << "a = " << a << ", b = " << b << endl;
+
+    CALL_WITH_MAX(++a, b + 10); 
+    cout << "a = " << a << ", b = " << b << endl; // a = 8, b = 0, , 变量a 被加了1次
+
+    callWithMax(++a, b); // a = 9, b = 0, 因为是引用, 但只会被加1次
+    cout << "a = " << a << ", b = " << b << endl;
+    callWithMax(++a, b+10); // a = 10, b = 0, 因为是引用, 但只会被加1次
+    cout << "a = " << a << ", b = " << b << endl;
+
     return 0;
 }
