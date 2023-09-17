@@ -66,8 +66,8 @@ public:
     }
     // ...
 };
-Directory& tempDir(){
-    static Directory td;
+Directory2& tempDir(){
+    static Directory2 td;
     return td;
 }
 
