@@ -91,7 +91,7 @@ class HomeForSale_3 : public Uncopyable
 
 
 // ----------------------------------------------------------------
-// c++11
+// c++11 使用delete
 class HomeForSale_4
 {
     // ...
